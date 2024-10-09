@@ -31,11 +31,9 @@
 #[cfg_attr(test, derive(test_strategy::Arbitrary))]
 pub struct GasCostSummary {
     #[serde(default)]
-    #[cfg_attr(feature = "schemars", schemars(with = "crate::_schemars::U64"))]
     pub base_point:u64,
 
     #[serde(default)]
-    #[cfg_attr(feature = "schemars", schemars(with = "crate::_schemars::U64"))]
     pub rate:u64,
 
     /// Cost of computation/execution
