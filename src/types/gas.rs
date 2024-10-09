@@ -30,11 +30,11 @@
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[cfg_attr(test, derive(test_strategy::Arbitrary))]
 pub struct GasCostSummary {
-    #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
+    #[serde(default)]
     #[cfg_attr(feature = "schemars", schemars(with = "crate::_schemars::U64"))]
     pub base_point:u64,
-    
-    #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
+
+    #[serde(default)]
     #[cfg_attr(feature = "schemars", schemars(with = "crate::_schemars::U64"))]
     pub rate:u64,
 
