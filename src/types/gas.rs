@@ -87,6 +87,8 @@ impl GasCostSummary {
 
 impl std::fmt::Display for GasCostSummary {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "base_point: {}, ", self.base_point)?;
+        write!(f, "rate: {}, ", self.rate)?;
         write!(f, "computation_cost: {}, ", self.computation_cost)?;
         write!(f, "storage_cost: {}, ", self.storage_cost)?;
         write!(f, "storage_rebate: {}, ", self.storage_rebate)?;
@@ -113,6 +115,8 @@ mod test {
             storage_cost: u64::MAX,
             storage_rebate: 0,
             non_refundable_storage_fee: 9,
+            base_point: 0,
+            rate: 1_000_000_000u64,
         };
 
         println!("{}", serde_json::to_string(&actual).unwrap());
