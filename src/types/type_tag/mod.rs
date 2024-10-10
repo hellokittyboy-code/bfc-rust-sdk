@@ -128,8 +128,8 @@ impl StructTag {
     pub fn gas_coin() -> Self {
         let sui = Self {
             address: Address::TWO,
-            module: Identifier::new("sui").unwrap(),
-            name: Identifier::new("SUI").unwrap(),
+            module: Identifier::new("bfc").unwrap(),
+            name: Identifier::new("BFC").unwrap(),
             type_params: vec![],
         };
 

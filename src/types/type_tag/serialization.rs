@@ -266,7 +266,7 @@ mod json_schema {
                 metadata: Some(Box::new(Metadata {
                     title: Some(Self::schema_name()),
                     description: Some("A Move Identifier".to_owned()),
-                    examples: vec![serde_json::json!("sui")],
+                    examples: vec![serde_json::json!("bfc")],
                     ..Default::default()
                 })),
                 instance_type: Some(InstanceType::String.into()),
