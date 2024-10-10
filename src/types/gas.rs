@@ -30,12 +30,6 @@
 #[cfg_attr(feature = "schemars", derive(schemars::JsonSchema))]
 #[cfg_attr(test, derive(test_strategy::Arbitrary))]
 pub struct GasCostSummary {
-    #[serde(default)]
-    pub base_point:u64,
-
-    #[serde(default)]
-    pub rate:u64,
-
     /// Cost of computation/execution
     #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
     #[cfg_attr(feature = "schemars", schemars(with = "crate::_schemars::U64"))]
@@ -56,6 +50,12 @@ pub struct GasCostSummary {
     #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
     #[cfg_attr(feature = "schemars", schemars(with = "crate::_schemars::U64"))]
     pub non_refundable_storage_fee: u64,
+
+    #[serde(default)]
+    pub base_point:u64,
+
+    #[serde(default)]
+    pub rate:u64,
 }
 
 impl GasCostSummary {
