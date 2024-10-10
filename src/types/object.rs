@@ -419,8 +419,8 @@ mod serialization {
                     } = s_inner.as_ref();
 
                     if address == &Address::TWO
-                        && module == "sui"
-                        && name == "SUI"
+                        && module == "bfc"
+                        && name == "BFC"
                         && type_params.is_empty()
                     {
                         return Self::GasCoin;
@@ -430,7 +430,7 @@ mod serialization {
                 Self::Coin(coin_type)
             } else if address == &Address::THREE
                 && module == "staking_pool"
-                && name == "StakedSui"
+                && name == "StakedBfc"
                 && type_params.is_empty()
             {
                 Self::StakedSui
