@@ -423,7 +423,7 @@ mod serialization {
                         && name == "BFC"
                         && type_params.is_empty()
                     {
-                        return Self::GasCoin;
+                        return Self::GasCoin(s);
                     }
                 }
 
