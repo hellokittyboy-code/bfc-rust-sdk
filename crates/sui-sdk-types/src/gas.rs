@@ -49,6 +49,16 @@ pub struct GasCostSummary {
     pub non_refundable_storage_fee: u64,
 }
 
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[cfg_attr(
+    feature = "serde",
+    derive(serde_derive::Serialize, serde_derive::Deserialize)
+)]
+#[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
+pub struct GasCostSummaryAdjusted {
+    pub gas_by_bfc: GasCostSummary,
+    pub gas_by_stable: GasCostSummary,
+}
 impl GasCostSummary {
     pub fn new(
         base_point: u64,
