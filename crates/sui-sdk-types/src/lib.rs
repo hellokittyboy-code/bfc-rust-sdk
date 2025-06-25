@@ -138,6 +138,7 @@ pub use transaction::RandomnessStateUpdate;
 pub use transaction::SignedTransaction;
 pub use transaction::SplitCoins;
 pub use transaction::SystemPackage;
+pub use transaction::TaggedGasCostSummary;
 pub use transaction::Transaction;
 pub use transaction::TransactionExpiration;
 pub use transaction::TransactionKind;
