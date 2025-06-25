@@ -319,8 +319,8 @@ pub struct ChangeEpoch {
     /// The non-refundable storage fee.
     #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
     pub bfc_non_refundable_storage_fee: u64,
-
-    pub stable_gas_summarys: Vec<(TypeTag, GasCostSummaryAdjusted)>,
+    #[cfg_attr(feature = "proptest", any(proptest::collection::size_range(0..=2).lift()))]
+    pub stable_gas_summarys: Vec<TaggedGasCostSummary>,
     /// Unix timestamp when epoch started
     #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
     pub epoch_start_timestamp_ms: u64,
@@ -333,6 +333,16 @@ pub struct ChangeEpoch {
     /// a list of their transitive dependencies.
     #[cfg_attr(feature = "proptest", any(proptest::collection::size_range(0..=2).lift()))]
     pub system_packages: Vec<SystemPackage>,
+}
+#[derive(Clone, Debug, PartialEq, Eq)]
+#[cfg_attr(
+    feature = "serde",
+    derive(serde_derive::Serialize, serde_derive::Deserialize)
+)]
+#[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
+pub struct TaggedGasCostSummary {
+    pub tag: TypeTag,
+    pub gas_cost_summary: GasCostSummaryAdjusted,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
