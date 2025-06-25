@@ -54,7 +54,6 @@ impl Address {
 
     pub fn from_hex<T: AsRef<[u8]>>(hex: T) -> Result<Self, AddressParseError> {
         let mut hex = hex.as_ref();
-        println!("wubin fromhex{:?}", hex.clone());
         if (hex.starts_with(b"BFC") || hex.starts_with(b"bfc")) && hex.len() > 4 {
             hex = &hex[3..hex.len() - 4];
         } else if hex.starts_with(b"0x") {
