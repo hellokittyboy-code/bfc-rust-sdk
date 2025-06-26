@@ -102,6 +102,7 @@ pub use execution_status::MoveLocation;
 pub use execution_status::PackageUpgradeError;
 pub use execution_status::TypeArgumentError;
 pub use gas::GasCostSummary;
+pub use gas::GasCostSummaryAdjusted;
 pub use object::GenesisObject;
 pub use object::MovePackage;
 pub use object::MoveStruct;
