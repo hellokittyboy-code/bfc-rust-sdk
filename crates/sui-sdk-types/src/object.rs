@@ -431,7 +431,7 @@ mod serialization {
         /// A type that is not `0x2::coin::Coin<T>`
         Other(StructTag),
         /// A SUI coin (i.e., `0x2::coin::Coin<0x2::sui::SUI>`)
-        GasCoin,
+        GasCoin(TypeTag),
         /// A record of a staked SUI coin (i.e., `0x3::staking_pool::StakedSui`)
         StakedSui,
         /// A non-SUI coin type (i.e., `0x2::coin::Coin<T> where T != 0x2::sui::SUI`)
@@ -447,7 +447,7 @@ mod serialization {
         /// A type that is not `0x2::coin::Coin<T>`
         Other(&'a StructTag),
         /// A SUI coin (i.e., `0x2::coin::Coin<0x2::sui::SUI>`)
-        GasCoin,
+        GasCoin(&'a TypeTag),
         /// A record of a staked SUI coin (i.e., `0x3::staking_pool::StakedSui`)
         StakedSui,
         /// A non-SUI coin type (i.e., `0x2::coin::Coin<T> where T != 0x2::sui::SUI`)
@@ -461,7 +461,7 @@ mod serialization {
         fn into_struct_tag(self) -> StructTag {
             match self {
                 MoveStructType::Other(tag) => tag,
-                MoveStructType::GasCoin => StructTag::gas_coin(),
+                MoveStructType::GasCoin(type_tag) => StructTag::gas_coin(),
                 MoveStructType::StakedSui => StructTag::staked_sui(),
                 MoveStructType::Coin(type_tag) => StructTag::coin(type_tag),
             }
@@ -487,18 +487,18 @@ mod serialization {
                     } = s_inner.as_ref();
 
                     if address == &Address::TWO
-                        && module == "sui"
-                        && name == "SUI"
+                        && module == "bfc"
+                        && name == "BFC"
                         && type_params.is_empty()
                     {
-                        return Self::GasCoin;
+                        return Self::GasCoin(coin_type);
                     }
                 }
 
                 Self::Coin(coin_type)
             } else if address == &Address::THREE
                 && module == "staking_pool"
-                && name == "StakedSui"
+                && name == "StakedBfc"
                 && type_params.is_empty()
             {
                 Self::StakedSui

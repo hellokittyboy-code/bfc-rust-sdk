@@ -1413,6 +1413,14 @@ type GasCoin {
 Breakdown of gas costs in effects.
 """
 type GasCostSummary {
+    """
+	Gas base point for bfc(in MIST).
+	"""
+	basePoint: BigInt
+	"""
+	Rate for bfc (in MIST).
+	"""
+	rate: BigInt
 	"""
 	Gas paid for executing this transaction (in MIST).
 	"""

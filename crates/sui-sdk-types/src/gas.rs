@@ -29,6 +29,8 @@
 )]
 #[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
 pub struct GasCostSummary {
+    pub base_point: u64,
+    pub rate: u64,
     /// Cost of computation/execution
     #[cfg_attr(feature = "serde", serde(with = "crate::_serde::ReadableDisplay"))]
     pub computation_cost: u64,
@@ -47,14 +49,28 @@ pub struct GasCostSummary {
     pub non_refundable_storage_fee: u64,
 }
 
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[cfg_attr(
+    feature = "serde",
+    derive(serde_derive::Serialize, serde_derive::Deserialize)
+)]
+#[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
+pub struct GasCostSummaryAdjusted {
+    pub gas_by_bfc: GasCostSummary,
+    pub gas_by_stable: GasCostSummary,
+}
 impl GasCostSummary {
     pub fn new(
+        base_point: u64,
+        rate: u64,
         computation_cost: u64,
         storage_cost: u64,
         storage_rebate: u64,
         non_refundable_storage_fee: u64,
     ) -> GasCostSummary {
         GasCostSummary {
+            base_point,
+            rate,
             computation_cost,
             storage_cost,
             storage_rebate,
