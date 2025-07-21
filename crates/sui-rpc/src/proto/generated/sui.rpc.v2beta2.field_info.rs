@@ -1163,33 +1163,47 @@ mod _field_impls {
         ];
     }
     impl GasCostSummary {
+        pub const BASE_POINT_FIELD: &'static MessageField = &MessageField {
+            name: "base_point",
+            json_name: "basePoint",
+            number: 1i32,
+            message_fields: None,
+        };
+        pub const RATE_FIELD: &'static MessageField = &MessageField {
+            name: "rate",
+            json_name: "rate",
+            number: 2i32,
+            message_fields: None,
+        };
         pub const COMPUTATION_COST_FIELD: &'static MessageField = &MessageField {
             name: "computation_cost",
             json_name: "computationCost",
-            number: 1i32,
+            number: 3i32,
             message_fields: None,
         };
         pub const STORAGE_COST_FIELD: &'static MessageField = &MessageField {
             name: "storage_cost",
             json_name: "storageCost",
-            number: 2i32,
+            number: 4i32,
             message_fields: None,
         };
         pub const STORAGE_REBATE_FIELD: &'static MessageField = &MessageField {
             name: "storage_rebate",
             json_name: "storageRebate",
-            number: 3i32,
+            number: 5i32,
             message_fields: None,
         };
         pub const NON_REFUNDABLE_STORAGE_FEE_FIELD: &'static MessageField = &MessageField {
             name: "non_refundable_storage_fee",
             json_name: "nonRefundableStorageFee",
-            number: 4i32,
+            number: 6i32,
             message_fields: None,
         };
     }
     impl MessageFields for GasCostSummary {
         const FIELDS: &'static [&'static MessageField] = &[
+            Self::BASE_POINT_FIELD,
+            Self::RATE_FIELD,
             Self::COMPUTATION_COST_FIELD,
             Self::STORAGE_COST_FIELD,
             Self::STORAGE_REBATE_FIELD,

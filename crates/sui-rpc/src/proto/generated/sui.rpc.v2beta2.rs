@@ -1339,18 +1339,22 @@ pub mod type_argument_error {
 /// Summary of gas charges.
 #[derive(Clone, Copy, PartialEq, ::prost::Message)]
 pub struct GasCostSummary {
-    /// Cost of computation/execution.
     #[prost(uint64, optional, tag = "1")]
+    pub base_point: ::core::option::Option<u64>,
+    #[prost(uint64, optional, tag = "2")]
+    pub rate: ::core::option::Option<u64>,
+    /// Cost of computation/execution.
+    #[prost(uint64, optional, tag = "3")]
     pub computation_cost: ::core::option::Option<u64>,
     /// Storage cost, it's the sum of all storage cost for all objects created or mutated.
-    #[prost(uint64, optional, tag = "2")]
+    #[prost(uint64, optional, tag = "4")]
     pub storage_cost: ::core::option::Option<u64>,
     /// The amount of storage cost refunded to the user for all objects deleted or mutated in the
     /// transaction.
-    #[prost(uint64, optional, tag = "3")]
+    #[prost(uint64, optional, tag = "5")]
     pub storage_rebate: ::core::option::Option<u64>,
     /// The fee for the rebate. The portion of the storage rebate kept by the system.
-    #[prost(uint64, optional, tag = "4")]
+    #[prost(uint64, optional, tag = "6")]
     pub non_refundable_storage_fee: ::core::option::Option<u64>,
 }
 /// An input to a user transaction.

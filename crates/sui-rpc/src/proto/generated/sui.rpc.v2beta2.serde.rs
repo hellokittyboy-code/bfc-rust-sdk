@@ -8808,6 +8808,12 @@ impl serde::Serialize for GasCostSummary {
     {
         use serde::ser::SerializeStruct;
         let mut len = 0;
+        if self.base_point.is_some() {
+            len += 1;
+        }
+        if self.rate.is_some() {
+            len += 1;
+        }
         if self.computation_cost.is_some() {
             len += 1;
         }
@@ -8821,6 +8827,16 @@ impl serde::Serialize for GasCostSummary {
             len += 1;
         }
         let mut struct_ser = serializer.serialize_struct("sui.rpc.v2beta2.GasCostSummary", len)?;
+        if let Some(v) = self.base_point.as_ref() {
+            #[allow(clippy::needless_borrow)]
+            #[allow(clippy::needless_borrows_for_generic_args)]
+            struct_ser.serialize_field("basePoint", ToString::to_string(&v).as_str())?;
+        }
+        if let Some(v) = self.rate.as_ref() {
+            #[allow(clippy::needless_borrow)]
+            #[allow(clippy::needless_borrows_for_generic_args)]
+            struct_ser.serialize_field("rate", ToString::to_string(&v).as_str())?;
+        }
         if let Some(v) = self.computation_cost.as_ref() {
             #[allow(clippy::needless_borrow)]
             #[allow(clippy::needless_borrows_for_generic_args)]
@@ -8851,6 +8867,9 @@ impl<'de> serde::Deserialize<'de> for GasCostSummary {
         D: serde::Deserializer<'de>,
     {
         const FIELDS: &[&str] = &[
+            "base_point",
+            "basePoint",
+            "rate",
             "computation_cost",
             "computationCost",
             "storage_cost",
@@ -8863,6 +8882,8 @@ impl<'de> serde::Deserialize<'de> for GasCostSummary {
 
         #[allow(clippy::enum_variant_names)]
         enum GeneratedField {
+            BasePoint,
+            Rate,
             ComputationCost,
             StorageCost,
             StorageRebate,
@@ -8889,6 +8910,8 @@ impl<'de> serde::Deserialize<'de> for GasCostSummary {
                         E: serde::de::Error,
                     {
                         match value {
+                            "basePoint" | "base_point" => Ok(GeneratedField::BasePoint),
+                            "rate" => Ok(GeneratedField::Rate),
                             "computationCost" | "computation_cost" => Ok(GeneratedField::ComputationCost),
                             "storageCost" | "storage_cost" => Ok(GeneratedField::StorageCost),
                             "storageRebate" | "storage_rebate" => Ok(GeneratedField::StorageRebate),
@@ -8914,12 +8937,30 @@ impl<'de> serde::Deserialize<'de> for GasCostSummary {
                 where
                     V: serde::de::MapAccess<'de>,
             {
+                let mut base_point__ = None;
+                let mut rate__ = None;
                 let mut computation_cost__ = None;
                 let mut storage_cost__ = None;
                 let mut storage_rebate__ = None;
                 let mut non_refundable_storage_fee__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
+                        GeneratedField::BasePoint => {
+                            if base_point__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("basePoint"));
+                            }
+                            base_point__ = 
+                                map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
+                            ;
+                        }
+                        GeneratedField::Rate => {
+                            if rate__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("rate"));
+                            }
+                            rate__ = 
+                                map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
+                            ;
+                        }
                         GeneratedField::ComputationCost => {
                             if computation_cost__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("computationCost"));
@@ -8958,6 +8999,8 @@ impl<'de> serde::Deserialize<'de> for GasCostSummary {
                     }
                 }
                 Ok(GasCostSummary {
+                    base_point: base_point__,
+                    rate: rate__,
                     computation_cost: computation_cost__,
                     storage_cost: storage_cost__,
                     storage_rebate: storage_rebate__,
