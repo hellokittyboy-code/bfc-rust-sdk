@@ -274,12 +274,15 @@ message ChangeEpoch {
   optional uint64 bfc_non_refundable_storage_fee = 6;
   // Unix timestamp when epoch started.
   optional google.protobuf.Timestamp epoch_start_timestamp = 7;
+
+  optional google.protobuf.Timestamp epoch_duration_ms = 8;
+
   // System packages (specifically framework and Move stdlib) that are written before the new
   // epoch starts. This tracks framework upgrades on chain. When executing the `ChangeEpoch` txn,
   // the validator must write out the following modules.  Modules are provided with the version they
   // will be upgraded to, their modules in serialized form (which include their package ID), and
   // a list of their transitive dependencies.
-  repeated SystemPackage system_packages = 8;
+  repeated SystemPackage system_packages = 9;
 }
 
 // System package.

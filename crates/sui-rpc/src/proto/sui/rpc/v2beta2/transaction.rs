@@ -1001,10 +1001,10 @@ impl From<sui_sdk_types::ChangeEpoch> for ChangeEpoch {
         Self {
             epoch: Some(value.epoch),
             protocol_version: Some(value.protocol_version),
-            storage_charge: Some(value.bfc_storage_charge),
-            computation_charge: Some(value. bfc_computation_charge),
-            storage_rebate: Some(value.bfc_storage_rebate),
-            non_refundable_storage_fee: Some(value.bfc_non_refundable_storage_fee),
+            bfc_storage_charge: Some(value.bfc_storage_charge),
+            bfc_computation_charge: Some(value. bfc_computation_charge),
+            bfc_storage_rebate: Some(value.bfc_storage_rebate),
+            bfc_non_refundable_storage_fee: Some(value.bfc_non_refundable_storage_fee),
             epoch_start_timestamp: Some(crate::proto::timestamp_ms_to_proto(
                 value.epoch_start_timestamp_ms,
             )),

@@ -4592,10 +4592,16 @@ mod _field_impls {
             number: 7i32,
             message_fields: None,
         };
+        pub const EPOCH_DURATION_MS_FIELD: &'static MessageField = &MessageField {
+            name: "epoch_duration_ms",
+            json_name: "epochDurationMs",
+            number: 8i32,
+            message_fields: None,
+        };
         pub const SYSTEM_PACKAGES_FIELD: &'static MessageField = &MessageField {
             name: "system_packages",
             json_name: "systemPackages",
-            number: 8i32,
+            number: 9i32,
             message_fields: Some(SystemPackage::FIELDS),
         };
     }
@@ -4608,6 +4614,7 @@ mod _field_impls {
             Self::BFC_STORAGE_REBATE_FIELD,
             Self::BFC_NON_REFUNDABLE_STORAGE_FEE_FIELD,
             Self::EPOCH_START_TIMESTAMP_FIELD,
+            Self::EPOCH_DURATION_MS_FIELD,
             Self::SYSTEM_PACKAGES_FIELD,
         ];
     }

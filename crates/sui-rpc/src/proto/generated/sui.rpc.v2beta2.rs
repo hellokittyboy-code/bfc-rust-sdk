@@ -6382,12 +6382,14 @@ pub struct ChangeEpoch {
     /// Unix timestamp when epoch started.
     #[prost(message, optional, tag = "7")]
     pub epoch_start_timestamp: ::core::option::Option<::prost_types::Timestamp>,
+    #[prost(message, optional, tag = "8")]
+    pub epoch_duration_ms: ::core::option::Option<::prost_types::Timestamp>,
     /// System packages (specifically framework and Move stdlib) that are written before the new
     /// epoch starts. This tracks framework upgrades on chain. When executing the `ChangeEpoch` txn,
     /// the validator must write out the following modules.  Modules are provided with the version they
     /// will be upgraded to, their modules in serialized form (which include their package ID), and
     /// a list of their transitive dependencies.
-    #[prost(message, repeated, tag = "8")]
+    #[prost(message, repeated, tag = "9")]
     pub system_packages: ::prost::alloc::vec::Vec<SystemPackage>,
 }
 /// System package.

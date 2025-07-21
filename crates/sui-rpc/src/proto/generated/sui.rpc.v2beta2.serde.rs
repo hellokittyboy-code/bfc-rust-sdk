@@ -1669,6 +1669,9 @@ impl serde::Serialize for ChangeEpoch {
         if self.epoch_start_timestamp.is_some() {
             len += 1;
         }
+        if self.epoch_duration_ms.is_some() {
+            len += 1;
+        }
         if !self.system_packages.is_empty() {
             len += 1;
         }
@@ -1706,6 +1709,9 @@ impl serde::Serialize for ChangeEpoch {
         if let Some(v) = self.epoch_start_timestamp.as_ref() {
             struct_ser.serialize_field("epochStartTimestamp", &crate::_serde::TimestampSerializer(v))?;
         }
+        if let Some(v) = self.epoch_duration_ms.as_ref() {
+            struct_ser.serialize_field("epochDurationMs", &crate::_serde::TimestampSerializer(v))?;
+        }
         if !self.system_packages.is_empty() {
             struct_ser.serialize_field("systemPackages", &self.system_packages)?;
         }
@@ -1732,6 +1738,8 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
             "bfcNonRefundableStorageFee",
             "epoch_start_timestamp",
             "epochStartTimestamp",
+            "epoch_duration_ms",
+            "epochDurationMs",
             "system_packages",
             "systemPackages",
         ];
@@ -1745,6 +1753,7 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
             BfcStorageRebate,
             BfcNonRefundableStorageFee,
             EpochStartTimestamp,
+            EpochDurationMs,
             SystemPackages,
             __SkipField__,
         }
@@ -1775,6 +1784,7 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                             "bfcStorageRebate" | "bfc_storage_rebate" => Ok(GeneratedField::BfcStorageRebate),
                             "bfcNonRefundableStorageFee" | "bfc_non_refundable_storage_fee" => Ok(GeneratedField::BfcNonRefundableStorageFee),
                             "epochStartTimestamp" | "epoch_start_timestamp" => Ok(GeneratedField::EpochStartTimestamp),
+                            "epochDurationMs" | "epoch_duration_ms" => Ok(GeneratedField::EpochDurationMs),
                             "systemPackages" | "system_packages" => Ok(GeneratedField::SystemPackages),
                             _ => Ok(GeneratedField::__SkipField__),
                         }
@@ -1804,6 +1814,7 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                 let mut bfc_storage_rebate__ = None;
                 let mut bfc_non_refundable_storage_fee__ = None;
                 let mut epoch_start_timestamp__ = None;
+                let mut epoch_duration_ms__ = None;
                 let mut system_packages__ = None;
                 while let Some(k) = map_.next_key()? {
                     match k {
@@ -1861,6 +1872,12 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                             }
                             epoch_start_timestamp__ = map_.next_value::<::std::option::Option<crate::_serde::TimestampDeserializer>>()?.map(|x| x.0.into());
                         }
+                        GeneratedField::EpochDurationMs => {
+                            if epoch_duration_ms__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("epochDurationMs"));
+                            }
+                            epoch_duration_ms__ = map_.next_value::<::std::option::Option<crate::_serde::TimestampDeserializer>>()?.map(|x| x.0.into());
+                        }
                         GeneratedField::SystemPackages => {
                             if system_packages__.is_some() {
                                 return Err(serde::de::Error::duplicate_field("systemPackages"));
@@ -1880,6 +1897,7 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                     bfc_storage_rebate: bfc_storage_rebate__,
                     bfc_non_refundable_storage_fee: bfc_non_refundable_storage_fee__,
                     epoch_start_timestamp: epoch_start_timestamp__,
+                    epoch_duration_ms: epoch_duration_ms__,
                     system_packages: system_packages__.unwrap_or_default(),
                 })
             }
