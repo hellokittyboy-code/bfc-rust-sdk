@@ -6365,16 +6365,16 @@ pub struct ChangeEpoch {
     pub protocol_version: ::core::option::Option<u64>,
     /// The total amount of gas charged for storage during the epoch.
     #[prost(uint64, optional, tag = "3")]
-    pub storage_charge: ::core::option::Option<u64>,
+    pub bfc_storage_charge: ::core::option::Option<u64>,
     /// The total amount of gas charged for computation during the epoch.
     #[prost(uint64, optional, tag = "4")]
-    pub computation_charge: ::core::option::Option<u64>,
+    pub bfc_computation_charge: ::core::option::Option<u64>,
     /// The amount of storage rebate refunded to the txn senders.
     #[prost(uint64, optional, tag = "5")]
-    pub storage_rebate: ::core::option::Option<u64>,
+    pub bfc_storage_rebate: ::core::option::Option<u64>,
     /// The non-refundable storage fee.
     #[prost(uint64, optional, tag = "6")]
-    pub non_refundable_storage_fee: ::core::option::Option<u64>,
+    pub bfc_non_refundable_storage_fee: ::core::option::Option<u64>,
     /// Unix timestamp when epoch started.
     #[prost(message, optional, tag = "7")]
     pub epoch_start_timestamp: ::core::option::Option<::prost_types::Timestamp>,

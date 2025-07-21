@@ -101,13 +101,14 @@ impl Address {
     }
 
     pub fn from_hex<T: AsRef<[u8]>>(hex: T) -> Result<Self, AddressParseError> {
-        let hex = hex.as_ref();
-
-        if !hex.starts_with(b"0x") {
+        let mut hex = hex.as_ref();
+        if (hex.starts_with(b"BFC") || hex.starts_with(b"bfc")) && hex.len() > 4 {
+            hex = &hex[3..hex.len() - 4];
+        } else if hex.starts_with(b"0x") {
+            hex = &hex[2..];
+        } else {
             return Err(AddressParseError);
         }
-
-        let hex = &hex[2..];
 
         // If the string is too short we'll need to pad with 0's
         if hex.len() < Self::LENGTH * 2 {

@@ -32,7 +32,7 @@ impl Merge<sui_sdk_types::CheckpointSummary> for CheckpointSummary {
             network_total_transactions,
             content_digest,
             previous_digest,
-            epoch_rolling_gas_cost_summary,
+            epoch_rolling_bfc_gas_cost_summary,
             timestamp_ms,
             checkpoint_commitments,
             end_of_epoch_data,
@@ -60,7 +60,7 @@ impl Merge<sui_sdk_types::CheckpointSummary> for CheckpointSummary {
         }
 
         if mask.contains(Self::EPOCH_ROLLING_GAS_COST_SUMMARY_FIELD.name) {
-            self.epoch_rolling_gas_cost_summary = Some(epoch_rolling_gas_cost_summary.into());
+            self.epoch_rolling_gas_cost_summary = Some(epoch_rolling_bfc_gas_cost_summary.into());
         }
 
         if mask.contains(Self::TIMESTAMP_FIELD.name) {
@@ -185,7 +185,7 @@ impl TryFrom<&CheckpointSummary> for sui_sdk_types::CheckpointSummary {
                 })
             })
             .transpose()?;
-        let epoch_rolling_gas_cost_summary = epoch_rolling_gas_cost_summary
+        let epoch_rolling_bfc_gas_cost_summary = epoch_rolling_gas_cost_summary
             .as_ref()
             .ok_or_else(|| TryFromProtoError::missing("epoch_rolling_gas_cost_summary"))?
             .try_into()?;
@@ -215,7 +215,7 @@ impl TryFrom<&CheckpointSummary> for sui_sdk_types::CheckpointSummary {
             network_total_transactions,
             content_digest,
             previous_digest,
-            epoch_rolling_gas_cost_summary,
+            epoch_rolling_bfc_gas_cost_summary,
             timestamp_ms,
             checkpoint_commitments,
             end_of_epoch_data,
@@ -231,6 +231,8 @@ impl TryFrom<&CheckpointSummary> for sui_sdk_types::CheckpointSummary {
 impl From<sui_sdk_types::GasCostSummary> for GasCostSummary {
     fn from(
         sui_sdk_types::GasCostSummary {
+            base_point,
+            rate,
             computation_cost,
             storage_cost,
             storage_rebate,
@@ -238,6 +240,8 @@ impl From<sui_sdk_types::GasCostSummary> for GasCostSummary {
         }: sui_sdk_types::GasCostSummary,
     ) -> Self {
         Self {
+            base_point: Some(base_point),
+            rate: Some(rate),
             computation_cost: Some(computation_cost),
             storage_cost: Some(storage_cost),
             storage_rebate: Some(storage_rebate),
@@ -251,12 +255,18 @@ impl TryFrom<&GasCostSummary> for sui_sdk_types::GasCostSummary {
 
     fn try_from(
         GasCostSummary {
+            base_point,
+            rate,
             computation_cost,
             storage_cost,
             storage_rebate,
             non_refundable_storage_fee,
         }: &GasCostSummary,
     ) -> Result<Self, Self::Error> {
+        let base_point = base_point.ok_or_else(|| TryFromProtoError::missing("base_point"))?;
+
+        let rate = rate.ok_or_else(|| TryFromProtoError::missing("rate"))?;
+
         let computation_cost =
             computation_cost.ok_or_else(|| TryFromProtoError::missing("computation_cost"))?;
         let storage_cost =
@@ -266,6 +276,8 @@ impl TryFrom<&GasCostSummary> for sui_sdk_types::GasCostSummary {
         let non_refundable_storage_fee = non_refundable_storage_fee
             .ok_or_else(|| TryFromProtoError::missing("non_refundable_storage_fee"))?;
         Ok(Self {
+            base_point: 0,
+            rate: 0,
             computation_cost,
             storage_cost,
             storage_rebate,

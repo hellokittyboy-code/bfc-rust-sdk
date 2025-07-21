@@ -135,7 +135,7 @@ pub struct CheckpointSummary {
 
     /// The running total gas costs of all transactions included in the current epoch so far
     /// until this checkpoint.
-    pub epoch_rolling_gas_cost_summary: GasCostSummary,
+    pub epoch_rolling_bfc_gas_cost_summary: GasCostSummary,
 
     /// Timestamp of the checkpoint - number of milliseconds from the Unix epoch
     /// Checkpoint timestamps are monotonic, but not strongly monotonic - subsequent

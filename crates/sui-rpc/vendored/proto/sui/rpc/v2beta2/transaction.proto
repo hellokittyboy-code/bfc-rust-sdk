@@ -265,13 +265,13 @@ message ChangeEpoch {
   // The protocol version in effect in the new epoch.
   optional uint64 protocol_version = 2;
   // The total amount of gas charged for storage during the epoch.
-  optional uint64 storage_charge = 3;
+  optional uint64 bfc_storage_charge = 3;
   // The total amount of gas charged for computation during the epoch.
-  optional uint64 computation_charge = 4;
+  optional uint64 bfc_computation_charge = 4;
   // The amount of storage rebate refunded to the txn senders.
-  optional uint64 storage_rebate = 5;
+  optional uint64 bfc_storage_rebate = 5;
   // The non-refundable storage fee.
-  optional uint64 non_refundable_storage_fee = 6;
+  optional uint64 bfc_non_refundable_storage_fee = 6;
   // Unix timestamp when epoch started.
   optional google.protobuf.Timestamp epoch_start_timestamp = 7;
   // System packages (specifically framework and Move stdlib) that are written before the new

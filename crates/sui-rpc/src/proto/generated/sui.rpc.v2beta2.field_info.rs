@@ -4548,27 +4548,27 @@ mod _field_impls {
             number: 2i32,
             message_fields: None,
         };
-        pub const STORAGE_CHARGE_FIELD: &'static MessageField = &MessageField {
-            name: "storage_charge",
-            json_name: "storageCharge",
+        pub const BFC_STORAGE_CHARGE_FIELD: &'static MessageField = &MessageField {
+            name: "bfc_storage_charge",
+            json_name: "bfcStorageCharge",
             number: 3i32,
             message_fields: None,
         };
-        pub const COMPUTATION_CHARGE_FIELD: &'static MessageField = &MessageField {
-            name: "computation_charge",
-            json_name: "computationCharge",
+        pub const BFC_COMPUTATION_CHARGE_FIELD: &'static MessageField = &MessageField {
+            name: "bfc_computation_charge",
+            json_name: "bfcComputationCharge",
             number: 4i32,
             message_fields: None,
         };
-        pub const STORAGE_REBATE_FIELD: &'static MessageField = &MessageField {
-            name: "storage_rebate",
-            json_name: "storageRebate",
+        pub const BFC_STORAGE_REBATE_FIELD: &'static MessageField = &MessageField {
+            name: "bfc_storage_rebate",
+            json_name: "bfcStorageRebate",
             number: 5i32,
             message_fields: None,
         };
-        pub const NON_REFUNDABLE_STORAGE_FEE_FIELD: &'static MessageField = &MessageField {
-            name: "non_refundable_storage_fee",
-            json_name: "nonRefundableStorageFee",
+        pub const BFC_NON_REFUNDABLE_STORAGE_FEE_FIELD: &'static MessageField = &MessageField {
+            name: "bfc_non_refundable_storage_fee",
+            json_name: "bfcNonRefundableStorageFee",
             number: 6i32,
             message_fields: None,
         };
@@ -4589,10 +4589,10 @@ mod _field_impls {
         const FIELDS: &'static [&'static MessageField] = &[
             Self::EPOCH_FIELD,
             Self::PROTOCOL_VERSION_FIELD,
-            Self::STORAGE_CHARGE_FIELD,
-            Self::COMPUTATION_CHARGE_FIELD,
-            Self::STORAGE_REBATE_FIELD,
-            Self::NON_REFUNDABLE_STORAGE_FEE_FIELD,
+            Self::BFC_STORAGE_CHARGE_FIELD,
+            Self::BFC_COMPUTATION_CHARGE_FIELD,
+            Self::BFC_STORAGE_REBATE_FIELD,
+            Self::BFC_NON_REFUNDABLE_STORAGE_FEE_FIELD,
             Self::EPOCH_START_TIMESTAMP_FIELD,
             Self::SYSTEM_PACKAGES_FIELD,
         ];

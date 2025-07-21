@@ -1654,16 +1654,16 @@ impl serde::Serialize for ChangeEpoch {
         if self.protocol_version.is_some() {
             len += 1;
         }
-        if self.storage_charge.is_some() {
+        if self.bfc_storage_charge.is_some() {
             len += 1;
         }
-        if self.computation_charge.is_some() {
+        if self.bfc_computation_charge.is_some() {
             len += 1;
         }
-        if self.storage_rebate.is_some() {
+        if self.bfc_storage_rebate.is_some() {
             len += 1;
         }
-        if self.non_refundable_storage_fee.is_some() {
+        if self.bfc_non_refundable_storage_fee.is_some() {
             len += 1;
         }
         if self.epoch_start_timestamp.is_some() {
@@ -1683,25 +1683,25 @@ impl serde::Serialize for ChangeEpoch {
             #[allow(clippy::needless_borrows_for_generic_args)]
             struct_ser.serialize_field("protocolVersion", ToString::to_string(&v).as_str())?;
         }
-        if let Some(v) = self.storage_charge.as_ref() {
+        if let Some(v) = self.bfc_storage_charge.as_ref() {
             #[allow(clippy::needless_borrow)]
             #[allow(clippy::needless_borrows_for_generic_args)]
-            struct_ser.serialize_field("storageCharge", ToString::to_string(&v).as_str())?;
+            struct_ser.serialize_field("bfcStorageCharge", ToString::to_string(&v).as_str())?;
         }
-        if let Some(v) = self.computation_charge.as_ref() {
+        if let Some(v) = self.bfc_computation_charge.as_ref() {
             #[allow(clippy::needless_borrow)]
             #[allow(clippy::needless_borrows_for_generic_args)]
-            struct_ser.serialize_field("computationCharge", ToString::to_string(&v).as_str())?;
+            struct_ser.serialize_field("bfcComputationCharge", ToString::to_string(&v).as_str())?;
         }
-        if let Some(v) = self.storage_rebate.as_ref() {
+        if let Some(v) = self.bfc_storage_rebate.as_ref() {
             #[allow(clippy::needless_borrow)]
             #[allow(clippy::needless_borrows_for_generic_args)]
-            struct_ser.serialize_field("storageRebate", ToString::to_string(&v).as_str())?;
+            struct_ser.serialize_field("bfcStorageRebate", ToString::to_string(&v).as_str())?;
         }
-        if let Some(v) = self.non_refundable_storage_fee.as_ref() {
+        if let Some(v) = self.bfc_non_refundable_storage_fee.as_ref() {
             #[allow(clippy::needless_borrow)]
             #[allow(clippy::needless_borrows_for_generic_args)]
-            struct_ser.serialize_field("nonRefundableStorageFee", ToString::to_string(&v).as_str())?;
+            struct_ser.serialize_field("bfcNonRefundableStorageFee", ToString::to_string(&v).as_str())?;
         }
         if let Some(v) = self.epoch_start_timestamp.as_ref() {
             struct_ser.serialize_field("epochStartTimestamp", &crate::_serde::TimestampSerializer(v))?;
@@ -1722,14 +1722,14 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
             "epoch",
             "protocol_version",
             "protocolVersion",
-            "storage_charge",
-            "storageCharge",
-            "computation_charge",
-            "computationCharge",
-            "storage_rebate",
-            "storageRebate",
-            "non_refundable_storage_fee",
-            "nonRefundableStorageFee",
+            "bfc_storage_charge",
+            "bfcStorageCharge",
+            "bfc_computation_charge",
+            "bfcComputationCharge",
+            "bfc_storage_rebate",
+            "bfcStorageRebate",
+            "bfc_non_refundable_storage_fee",
+            "bfcNonRefundableStorageFee",
             "epoch_start_timestamp",
             "epochStartTimestamp",
             "system_packages",
@@ -1740,10 +1740,10 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
         enum GeneratedField {
             Epoch,
             ProtocolVersion,
-            StorageCharge,
-            ComputationCharge,
-            StorageRebate,
-            NonRefundableStorageFee,
+            BfcStorageCharge,
+            BfcComputationCharge,
+            BfcStorageRebate,
+            BfcNonRefundableStorageFee,
             EpochStartTimestamp,
             SystemPackages,
             __SkipField__,
@@ -1770,10 +1770,10 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                         match value {
                             "epoch" => Ok(GeneratedField::Epoch),
                             "protocolVersion" | "protocol_version" => Ok(GeneratedField::ProtocolVersion),
-                            "storageCharge" | "storage_charge" => Ok(GeneratedField::StorageCharge),
-                            "computationCharge" | "computation_charge" => Ok(GeneratedField::ComputationCharge),
-                            "storageRebate" | "storage_rebate" => Ok(GeneratedField::StorageRebate),
-                            "nonRefundableStorageFee" | "non_refundable_storage_fee" => Ok(GeneratedField::NonRefundableStorageFee),
+                            "bfcStorageCharge" | "bfc_storage_charge" => Ok(GeneratedField::BfcStorageCharge),
+                            "bfcComputationCharge" | "bfc_computation_charge" => Ok(GeneratedField::BfcComputationCharge),
+                            "bfcStorageRebate" | "bfc_storage_rebate" => Ok(GeneratedField::BfcStorageRebate),
+                            "bfcNonRefundableStorageFee" | "bfc_non_refundable_storage_fee" => Ok(GeneratedField::BfcNonRefundableStorageFee),
                             "epochStartTimestamp" | "epoch_start_timestamp" => Ok(GeneratedField::EpochStartTimestamp),
                             "systemPackages" | "system_packages" => Ok(GeneratedField::SystemPackages),
                             _ => Ok(GeneratedField::__SkipField__),
@@ -1799,10 +1799,10 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
             {
                 let mut epoch__ = None;
                 let mut protocol_version__ = None;
-                let mut storage_charge__ = None;
-                let mut computation_charge__ = None;
-                let mut storage_rebate__ = None;
-                let mut non_refundable_storage_fee__ = None;
+                let mut bfc_storage_charge__ = None;
+                let mut bfc_computation_charge__ = None;
+                let mut bfc_storage_rebate__ = None;
+                let mut bfc_non_refundable_storage_fee__ = None;
                 let mut epoch_start_timestamp__ = None;
                 let mut system_packages__ = None;
                 while let Some(k) = map_.next_key()? {
@@ -1823,35 +1823,35 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                                 map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
                             ;
                         }
-                        GeneratedField::StorageCharge => {
-                            if storage_charge__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("storageCharge"));
+                        GeneratedField::BfcStorageCharge => {
+                            if bfc_storage_charge__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("bfcStorageCharge"));
                             }
-                            storage_charge__ = 
+                            bfc_storage_charge__ = 
                                 map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
                             ;
                         }
-                        GeneratedField::ComputationCharge => {
-                            if computation_charge__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("computationCharge"));
+                        GeneratedField::BfcComputationCharge => {
+                            if bfc_computation_charge__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("bfcComputationCharge"));
                             }
-                            computation_charge__ = 
+                            bfc_computation_charge__ = 
                                 map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
                             ;
                         }
-                        GeneratedField::StorageRebate => {
-                            if storage_rebate__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("storageRebate"));
+                        GeneratedField::BfcStorageRebate => {
+                            if bfc_storage_rebate__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("bfcStorageRebate"));
                             }
-                            storage_rebate__ = 
+                            bfc_storage_rebate__ = 
                                 map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
                             ;
                         }
-                        GeneratedField::NonRefundableStorageFee => {
-                            if non_refundable_storage_fee__.is_some() {
-                                return Err(serde::de::Error::duplicate_field("nonRefundableStorageFee"));
+                        GeneratedField::BfcNonRefundableStorageFee => {
+                            if bfc_non_refundable_storage_fee__.is_some() {
+                                return Err(serde::de::Error::duplicate_field("bfcNonRefundableStorageFee"));
                             }
-                            non_refundable_storage_fee__ = 
+                            bfc_non_refundable_storage_fee__ = 
                                 map_.next_value::<::std::option::Option<crate::_serde::NumberDeserialize<_>>>()?.map(|x| x.0)
                             ;
                         }
@@ -1875,10 +1875,10 @@ impl<'de> serde::Deserialize<'de> for ChangeEpoch {
                 Ok(ChangeEpoch {
                     epoch: epoch__,
                     protocol_version: protocol_version__,
-                    storage_charge: storage_charge__,
-                    computation_charge: computation_charge__,
-                    storage_rebate: storage_rebate__,
-                    non_refundable_storage_fee: non_refundable_storage_fee__,
+                    bfc_storage_charge: bfc_storage_charge__,
+                    bfc_computation_charge: bfc_computation_charge__,
+                    bfc_storage_rebate: bfc_storage_rebate__,
+                    bfc_non_refundable_storage_fee: bfc_non_refundable_storage_fee__,
                     epoch_start_timestamp: epoch_start_timestamp__,
                     system_packages: system_packages__.unwrap_or_default(),
                 })

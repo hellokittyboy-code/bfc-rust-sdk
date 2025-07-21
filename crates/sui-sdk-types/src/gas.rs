@@ -40,6 +40,9 @@
 )]
 #[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
 pub struct GasCostSummary {
+    pub base_point: u64,
+
+    pub rate: u64,
     /// Cost of computation/execution
     pub computation_cost: u64,
 
@@ -54,6 +57,18 @@ pub struct GasCostSummary {
     pub non_refundable_storage_fee: u64,
 }
 
+
+#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[cfg_attr(
+feature = "serde",
+derive(serde_derive::Serialize, serde_derive::Deserialize)
+)]
+#[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
+pub struct GasCostSummaryAdjusted {
+    pub gas_by_bfc: GasCostSummary,
+    pub gas_by_stable: GasCostSummary,
+}
+
 impl GasCostSummary {
     /// Create a new gas cost summary.
     ///
@@ -63,12 +78,16 @@ impl GasCostSummary {
     /// * `storage_rebate` - The amount of storage cost refunded to the user for all objects deleted or mutated in the transaction.
     /// * `non_refundable_storage_fee` - The fee for the rebate. The portion of the storage rebate kept by the system.
     pub fn new(
+        base_point: u64,
+        rate: u64,
         computation_cost: u64,
         storage_cost: u64,
         storage_rebate: u64,
         non_refundable_storage_fee: u64,
     ) -> GasCostSummary {
         GasCostSummary {
+            base_point,
+            rate,
             computation_cost,
             storage_cost,
             storage_rebate,
