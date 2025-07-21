@@ -783,7 +783,7 @@ pub struct ChangeEpoch {
 #[derive(Clone, Debug, PartialEq, Eq)]
 #[cfg_attr(
 feature = "serde",
-derive(serde_derive::Serialize, serde_derive::Deserialize)
+derive(serde_derive::Serialize, serde_derive::Deserialize, Hash)
 )]
 #[cfg_attr(feature = "proptest", derive(test_strategy::Arbitrary))]
 pub struct TaggedGasCostSummary {
