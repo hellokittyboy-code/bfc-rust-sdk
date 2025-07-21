@@ -1008,6 +1008,9 @@ impl From<sui_sdk_types::ChangeEpoch> for ChangeEpoch {
             epoch_start_timestamp: Some(crate::proto::timestamp_ms_to_proto(
                 value.epoch_start_timestamp_ms,
             )),
+            epoch_duration_ms: Some(crate::proto::timestamp_ms_to_proto(
+                value.epoch_duration_ms,
+            )),
             system_packages: value.system_packages.into_iter().map(Into::into).collect(),
         }
     }
@@ -1032,13 +1035,13 @@ impl TryFrom<&ChangeEpoch> for sui_sdk_types::ChangeEpoch {
         let epoch = epoch.ok_or_else(|| TryFromProtoError::missing("epoch"))?;
         let protocol_version =
             protocol_version.ok_or_else(|| TryFromProtoError::missing("protocol_version"))?;
-        let storage_charge =
+        let bfc_storage_charge =
             bfc_storage_charge.ok_or_else(|| TryFromProtoError::missing("storage_charge"))?;
-        let computation_charge =
+        let bfc_computation_charge =
             bfc_computation_charge.ok_or_else(|| TryFromProtoError::missing("computation_charge"))?;
-        let storage_rebate =
+        let bfc_storage_rebate =
             bfc_storage_rebate.ok_or_else(|| TryFromProtoError::missing("storage_rebate"))?;
-        let non_refundable_storage_fee = bfc_non_refundable_storage_fee
+        let bfc_non_refundable_storage_fee = bfc_non_refundable_storage_fee
             .ok_or_else(|| TryFromProtoError::missing("non_refundable_storage_fee"))?;
         let epoch_start_timestamp_ms = epoch_start_timestamp
             .ok_or_else(|| TryFromProtoError::missing("epoch_start_timestamp_ms"))?
