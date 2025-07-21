@@ -650,10 +650,6 @@ impl From<sui_sdk_types::UnchangedSharedObject> for UnchangedSharedObject {
                 UnchangedSharedObjectKind::Canceled
             }
             PerEpochConfig => UnchangedSharedObjectKind::PerEpochConfig,
-            PerEpochConfigWithSequenceNumber { version } => {
-                message.version = Some(version);
-                UnchangedSharedObjectKind::PerEpochConfig
-            }
         };
 
         message.set_kind(kind);
@@ -713,11 +709,7 @@ impl TryFrom<&UnchangedSharedObject> for sui_sdk_types::UnchangedSharedObject {
                     .ok_or_else(|| TryFromProtoError::missing("version"))?,
             },
             UnchangedSharedObjectKind::PerEpochConfig => {
-                if let Some(version) = value.version {
-                    UnchangedSharedKind::PerEpochConfigWithSequenceNumber { version }
-                } else {
-                    UnchangedSharedKind::PerEpochConfig
-                }
+                UnchangedSharedKind::PerEpochConfig
             }
         };
 

@@ -177,9 +177,6 @@ pub enum UnchangedSharedKind {
     /// Read of a per-epoch config object that should remain the same during an epoch.
     /// NOTE: Will be deprecated in the near future in favor of `PerEpochConfigWithSequenceNumber`.
     PerEpochConfig,
-
-    /// Read of a per-epoch config and it's starting sequence number in the epoch.
-    PerEpochConfigWithSequenceNumber { version: Version },
 }
 
 /// State of an object prior to execution
