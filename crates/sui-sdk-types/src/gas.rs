@@ -33,7 +33,7 @@
 ///                    u64 ; storage-rebate
 ///                    u64 ; non-refundable-storage-fee
 /// ```
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Hash)]
 #[cfg_attr(
     feature = "serde",
     derive(serde_derive::Serialize, serde_derive::Deserialize)
@@ -58,7 +58,7 @@ pub struct GasCostSummary {
 }
 
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Hash)]
 #[cfg_attr(
 feature = "serde",
 derive(serde_derive::Serialize, serde_derive::Deserialize)
