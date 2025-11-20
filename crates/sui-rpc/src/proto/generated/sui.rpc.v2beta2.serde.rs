@@ -6317,6 +6317,9 @@ impl serde::Serialize for EndOfEpochTransactionKind {
                 end_of_epoch_transaction_kind::Kind::CoinRegistryCreate(v) => {
                     struct_ser.serialize_field("coinRegistryCreate", &crate::_serde::EmptySerializer(v))?;
                 }
+                end_of_epoch_transaction_kind::Kind::AnonymousStateCreate(v) => {
+                    struct_ser.serialize_field("anonymousStateCreate", &crate::_serde::EmptySerializer(v))?;
+                }
             }
         }
         struct_ser.end()

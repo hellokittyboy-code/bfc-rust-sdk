@@ -6599,6 +6599,9 @@ pub mod end_of_epoch_transaction_kind {
         /// Create and initialize the Coin Registry object.
         #[prost(message, tag = "206")]
         CoinRegistryCreate(()),
+
+        #[prost(message, tag = "207")]
+        AnonymousStateCreate(()),
     }
 }
 /// Expire old JWKs.
