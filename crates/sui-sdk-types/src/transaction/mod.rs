@@ -312,6 +312,8 @@ pub enum EndOfEpochTransactionKind {
 
     /// Contains the end-of-epoch-computed storage cost for accumulator objects.
     WriteAccumulatorStorageCost { storage_cost: u64 },
+
+    AnonymousStateCreate,
 }
 
 /// Set of Execution Time Observations from the committee.
