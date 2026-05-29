@@ -4965,6 +4965,18 @@ mod _field_impls {
             number: 206i32,
             message_fields: None,
         };
+        pub const ANONYMOUS_STATE_CREATE_FIELD: &'static MessageField = &MessageField {
+            name: "anonymous_state_create",
+            json_name: "anonymousStateCreate",
+            number: 207i32,
+            message_fields: None,
+        };
+        pub const VERIFY_CONTRACT_STATE_CREATE_FIELD: &'static MessageField = &MessageField {
+            name: "verify_contract_state_create",
+            json_name: "verifyContractStateCreate",
+            number: 208i32,
+            message_fields: None,
+        };
     }
     impl MessageFields for EndOfEpochTransactionKind {
         const FIELDS: &'static [&'static MessageField] = &[
@@ -4978,6 +4990,8 @@ mod _field_impls {
             Self::BRIDGE_COMMITTEE_INIT_FIELD,
             Self::ACCUMULATOR_ROOT_CREATE_FIELD,
             Self::COIN_REGISTRY_CREATE_FIELD,
+            Self::ANONYMOUS_STATE_CREATE_FIELD,
+            Self::VERIFY_CONTRACT_STATE_CREATE_FIELD,
         ];
     }
     impl AuthenticatorStateExpire {

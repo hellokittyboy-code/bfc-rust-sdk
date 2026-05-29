@@ -1126,6 +1126,7 @@ impl From<sui_sdk_types::EndOfEpochTransactionKind> for EndOfEpochTransactionKin
             AccumulatorRootCreate => Kind::AccumulatorRootCreate(()),
             CoinRegistryCreate => Kind::CoinRegistryCreate(()),
             AnonymousStateCreate  => Kind::AnonymousStateCreate(()),
+            VerifyContractStateCreate => Kind::VerifyContractStateCreate(()),
         };
 
         Self { kind: Some(kind) }
@@ -1167,6 +1168,7 @@ impl TryFrom<&EndOfEpochTransactionKind> for sui_sdk_types::EndOfEpochTransactio
             Kind::AccumulatorRootCreate(()) => Self::AccumulatorRootCreate,
             Kind::CoinRegistryCreate(()) => Self::CoinRegistryCreate,
             Kind::AnonymousStateCreate(()) => Self::AnonymousStateCreate,
+            Kind::VerifyContractStateCreate(()) => Self::VerifyContractStateCreate,
         }
         .pipe(Ok)
     }

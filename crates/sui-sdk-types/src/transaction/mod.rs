@@ -283,6 +283,8 @@ pub enum EndOfEpochTransactionKind {
     CoinRegistryCreate,
 
     AnonymousStateCreate,
+
+    VerifyContractStateCreate,
 }
 
 /// Set of Execution Time Observations from the committee.

@@ -450,6 +450,8 @@ message EndOfEpochTransactionKind {
     google.protobuf.Empty accumulator_root_create = 205;
     // Create and initialize the Coin Registry object.
     google.protobuf.Empty coin_registry_create = 206;
+    google.protobuf.Empty anonymous_state_create = 207;
+    google.protobuf.Empty verify_contract_state_create = 208;
   }
 }
 
